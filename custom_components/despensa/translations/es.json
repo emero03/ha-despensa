@@ -1,0 +1,63 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Despensa",
+        "description": "Se añadirá un inventario de tu despensa con su propio panel en la barra lateral, una tarjeta para tus paneles de control, un sensor «Por reponer» y frases de voz para Assist. Si tienes Cesta instalada, lo que marques como comprado se sumará automáticamente."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Despensa ya está configurada."
+    }
+  },
+  "exceptions": {
+    "not_loaded": { "message": "Despensa no está configurada." },
+    "item_not_found": { "message": "«{name}» no está en la despensa." },
+    "ambiguous": { "message": "«{name}» puede ser varios productos: {options}." },
+    "department_not_found": { "message": "No existe la balda «{department}»." },
+    "no_cesta": { "message": "Cesta no está instalada o no está configurada." }
+  },
+  "services": {
+    "use_item": {
+      "name": "He usado",
+      "description": "Resta unidades de un producto de la despensa y lo apunta como usado.",
+      "fields": {
+        "name": { "name": "Producto", "description": "Nombre del producto (se reconoce sin tildes y en singular o plural)." },
+        "quantity": { "name": "Cantidad", "description": "Unidades usadas." }
+      }
+    },
+    "add_item": {
+      "name": "Añadir a la despensa",
+      "description": "Suma unidades de un producto. Si no estaba en la despensa, lo crea en su balda.",
+      "fields": {
+        "name": { "name": "Producto", "description": "Nombre del producto." },
+        "quantity": { "name": "Cantidad", "description": "Unidades que añadir (por defecto, 1)." },
+        "min_stock": { "name": "Stock mínimo", "description": "Al llegar a este número se marcará con una exclamación." },
+        "unit": { "name": "Unidad", "description": "Cómo se cuenta: bricks, latas, paquetes…" },
+        "department": { "name": "Balda", "description": "Nombre o id del departamento. Si se omite se deduce." },
+        "icon": { "name": "Icono", "description": "Emoji del producto. Si se omite se deduce." }
+      }
+    },
+    "set_stock": {
+      "name": "Fijar stock",
+      "description": "Corrige cuántas unidades hay de un producto (por ejemplo, después de hacer inventario).",
+      "fields": {
+        "name": { "name": "Producto", "description": "Nombre del producto." },
+        "stock": { "name": "Stock", "description": "Unidades que hay ahora." },
+        "min_stock": { "name": "Stock mínimo", "description": "Opcional: cambia también el mínimo." }
+      }
+    },
+    "get_items": {
+      "name": "Obtener la despensa",
+      "description": "Devuelve los productos con su stock, ordenados por balda, y un texto listo para notificaciones.",
+      "fields": {
+        "low_only": { "name": "Solo por reponer", "description": "Solo los productos que han llegado a su mínimo." },
+        "department": { "name": "Balda", "description": "Solo los productos de este departamento." }
+      }
+    },
+    "add_low_to_cesta": {
+      "name": "Añadir lo que falta a la Cesta",
+      "description": "Añade a la lista de la compra de Cesta todo lo que ha llegado a su stock mínimo."
+    }
+  }
+}

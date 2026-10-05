@@ -1,0 +1,63 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Despensa",
+        "description": "Adds a pantry inventory with its own sidebar panel, a dashboard card, a \"Por reponer\" (to restock) sensor and voice sentences for Assist. If Cesta is installed, items you mark as bought there are added automatically."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Despensa is already configured."
+    }
+  },
+  "exceptions": {
+    "not_loaded": { "message": "Despensa is not configured." },
+    "item_not_found": { "message": "\"{name}\" is not in the pantry." },
+    "ambiguous": { "message": "\"{name}\" could be several products: {options}." },
+    "department_not_found": { "message": "There is no shelf called \"{department}\"." },
+    "no_cesta": { "message": "Cesta is not installed or not configured." }
+  },
+  "services": {
+    "use_item": {
+      "name": "Use item",
+      "description": "Subtracts units of a pantry product and logs it as used.",
+      "fields": {
+        "name": { "name": "Product", "description": "Product name." },
+        "quantity": { "name": "Quantity", "description": "Units used." }
+      }
+    },
+    "add_item": {
+      "name": "Add to pantry",
+      "description": "Adds units of a product. Creates it on its shelf if it was not in the pantry.",
+      "fields": {
+        "name": { "name": "Product", "description": "Product name." },
+        "quantity": { "name": "Quantity", "description": "Units to add (default 1)." },
+        "min_stock": { "name": "Minimum stock", "description": "When the stock reaches this number it is flagged." },
+        "unit": { "name": "Unit", "description": "How it is counted: cartons, cans, packs…" },
+        "department": { "name": "Shelf", "description": "Department name or id. Guessed if omitted." },
+        "icon": { "name": "Icon", "description": "Product emoji. Guessed if omitted." }
+      }
+    },
+    "set_stock": {
+      "name": "Set stock",
+      "description": "Corrects how many units there are of a product.",
+      "fields": {
+        "name": { "name": "Product", "description": "Product name." },
+        "stock": { "name": "Stock", "description": "Units there are now." },
+        "min_stock": { "name": "Minimum stock", "description": "Optional: also change the minimum." }
+      }
+    },
+    "get_items": {
+      "name": "Get pantry",
+      "description": "Returns the products with their stock, sorted by shelf, plus a notification-ready text.",
+      "fields": {
+        "low_only": { "name": "Only to restock", "description": "Only products at or below their minimum." },
+        "department": { "name": "Shelf", "description": "Only products from this department." }
+      }
+    },
+    "add_low_to_cesta": {
+      "name": "Add missing items to Cesta",
+      "description": "Adds every product at or below its minimum to the Cesta shopping list."
+    }
+  }
+}

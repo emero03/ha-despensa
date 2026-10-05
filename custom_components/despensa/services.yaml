@@ -1,0 +1,84 @@
+use_item:
+  fields:
+    name:
+      required: true
+      example: "Atún en lata"
+      selector:
+        text:
+    quantity:
+      default: 1
+      selector:
+        number:
+          min: 1
+          max: 999
+          mode: box
+
+add_item:
+  fields:
+    name:
+      required: true
+      example: "Leche"
+      selector:
+        text:
+    quantity:
+      example: 6
+      selector:
+        number:
+          min: 1
+          max: 999
+          mode: box
+    min_stock:
+      example: 2
+      selector:
+        number:
+          min: 0
+          max: 999
+          mode: box
+    unit:
+      example: "bricks"
+      selector:
+        text:
+    department:
+      example: "Lácteos y huevos"
+      selector:
+        text:
+    icon:
+      example: "🥛"
+      selector:
+        text:
+
+set_stock:
+  fields:
+    name:
+      required: true
+      example: "Arroz"
+      selector:
+        text:
+    stock:
+      required: true
+      example: 3
+      selector:
+        number:
+          min: 0
+          max: 9999
+          mode: box
+    min_stock:
+      example: 1
+      selector:
+        number:
+          min: 0
+          max: 999
+          mode: box
+
+get_items:
+  fields:
+    low_only:
+      default: false
+      selector:
+        boolean:
+    department:
+      example: "Limpieza y hogar"
+      selector:
+        text:
+
+add_low_to_cesta:
